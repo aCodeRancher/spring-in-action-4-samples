@@ -2,10 +2,10 @@ package sia.knights;
 
 public class DamselRescuingKnight implements Knight {
 
-  private RescueDamselQuest quest;
+  private Quest quest;
 
-  public DamselRescuingKnight() {
-    this.quest = new RescueDamselQuest();
+  public DamselRescuingKnight(Quest quest) {
+    this.quest = quest;
   }
 
   public void embarkOnQuest() {

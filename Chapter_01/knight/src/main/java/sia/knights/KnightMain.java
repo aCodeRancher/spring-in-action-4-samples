@@ -1,17 +1,18 @@
 package sia.knights;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.
                    ClassPathXmlApplicationContext;
 
 public class KnightMain {
 
   public static void main(String[] args) throws Exception {
-    ClassPathXmlApplicationContext context = 
+    ApplicationContext context =
         new ClassPathXmlApplicationContext(
             "META-INF/spring/knight.xml");
-    Knight knight = context.getBean(Knight.class);
+    Knight knight = (Knight)context.getBean("knight1");
     knight.embarkOnQuest();
-    context.close();
+
   }
 
 }

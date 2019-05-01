@@ -8,8 +8,13 @@
     <constructor-arg ref="quest" />
   </bean>
 
+  <bean id="knight1" class="sia.knights.BraveKnight">
+    <constructor-arg ref="quest1" />
+  </bean>
   <bean id="quest" class="sia.knights.SlayDragonQuest">
     <constructor-arg value="#{T(System).out}" />
   </bean>
-
+  <bean id="quest1" class="sia.knights.RescueDamselQuest">
+    <constructor-arg value="#{T(System).out}" />
+  </bean>
 </beans>
