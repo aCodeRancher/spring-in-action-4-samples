@@ -5,6 +5,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -46,6 +49,9 @@ public class SpitterController {
   @RequestMapping(value="/me", method=GET)
   public String me() {
     System.out.println("ME ME ME ME ME ME ME ME ME ME ME");
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String principleName = authentication.getName();
+    System.out.println( "My principle name is: " + principleName);
     return "home";
   }
 

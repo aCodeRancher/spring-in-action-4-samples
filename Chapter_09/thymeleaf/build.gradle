@@ -13,6 +13,7 @@ dependencies {
   compile "org.thymeleaf:thymeleaf-spring4:$thymeleafVersion"
   compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE"
   compile "org.springframework.ldap:spring-ldap-core:2.0.1.RELEASE"
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
 
@@ -31,7 +32,7 @@ repositories {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.8'
+  gradleVersion = '4.4'
 }
 
 war {
