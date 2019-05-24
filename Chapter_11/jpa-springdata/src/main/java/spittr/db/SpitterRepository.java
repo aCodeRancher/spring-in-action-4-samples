@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.data.jpa.repository.Query;
 import spittr.domain.Spitter;
 
 /**
@@ -16,4 +17,6 @@ public interface SpitterRepository extends JpaRepository<Spitter, Long>, Spitter
 	
 	List<Spitter> findByUsernameOrFullNameLike(String username, String fullName);
 
+	@Query("Select s from Spitter s where s.email like '%habuma.com'")
+	List<Spitter> findAllHabumaEmailSpitters();
 }

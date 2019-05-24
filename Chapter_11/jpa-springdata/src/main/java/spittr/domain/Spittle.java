@@ -11,7 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Spittle {
+public class
+Spittle {
 
   @Id	
   @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -2,6 +2,7 @@ package spittr.db.jpa;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +50,20 @@ public class SpitterRepositoryTest {
 		assertSpitter(2, spitterRepository.findByUsername("chuck"));
 		assertSpitter(3, spitterRepository.findByUsername("artnames"));
 	}
-	
+	@Test
+	@Transactional
+	public void findByUsernameOrFullNameLike() {
+		List<Spitter> spitters = spitterRepository.findByUsernameOrFullNameLike("mwalls", "Craig Walls");
+		assertEquals(2, spitters.size());
+	 }
+
+	@Test
+	@Transactional
+	public void findByEmailHabuma() {
+		List<Spitter> spitters = spitterRepository.findAllHabumaEmailSpitters();
+		assertEquals(4, spitters.size());
+	}
+
 	@Test
 	@Transactional
 	public void findOne() {
@@ -57,7 +72,23 @@ public class SpitterRepositoryTest {
 		assertSpitter(2, spitterRepository.findOne(3L));
 		assertSpitter(3, spitterRepository.findOne(4L));
 	}
-	
+
+	@Test
+	@Transactional
+	public void testEliteSweep(){
+		int sweepUpdate = spitterRepository.eliteSweep();
+
+		Spitter updated = spitterRepository.findOne(4L);
+		assertEquals("Elite",updated.getStatus());
+		Spitter updated1= spitterRepository.findOne(1L);
+		assertEquals("Elite", updated1.getStatus());
+		Spitter updated2 = spitterRepository.findOne(2L);
+
+		assertEquals("Newbie",updated2.getStatus());
+		Spitter updated3= spitterRepository.findOne(3L);
+		assertEquals("Newbie", updated3.getStatus());
+
+	}
 	@Test
 	@Transactional
 	public void save_newSpitter() {

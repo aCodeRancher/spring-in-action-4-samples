@@ -15,7 +15,7 @@ public class SpitterRepositoryImpl implements SpitterSweeper {
 	   		"WHERE spitter.status = 'Newbie' " +
 	   		"AND spitter.id IN (" +
 	   		"SELECT s FROM Spitter s WHERE (" +
-	   		"  SELECT COUNT(spittles) FROM s.spittles spittles) > 10000" +
+	   		"  SELECT COUNT(spittles) FROM s.spittles spittles) > 2" +
 	   		")";
 		return em.createQuery(update).executeUpdate();
 	}
