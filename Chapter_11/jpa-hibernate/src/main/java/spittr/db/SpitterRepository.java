@@ -20,4 +20,5 @@ public interface SpitterRepository {
 
   List<Spitter> findAll();
 
+  Spitter merge(Spitter spitter);
 }

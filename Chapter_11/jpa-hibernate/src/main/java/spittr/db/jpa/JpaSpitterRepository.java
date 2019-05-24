@@ -36,5 +36,9 @@ public class JpaSpitterRepository implements SpitterRepository {
 	public List<Spitter> findAll() {
 		return (List<Spitter>) entityManager.createQuery("select s from Spitter s").getResultList();
 	}
-	
+
+	public Spitter merge(Spitter spitter){
+		entityManager.merge(spitter);
+		return spitter;
+	}
 }

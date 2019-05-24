@@ -71,11 +71,11 @@ public class SpitterRepositoryTest {
 
 	@Test
 	@Transactional
-	@Ignore
+	//@Ignore
 	public void save_existingSpitter() {
 		assertEquals(4, spitterRepository.count());
 		Spitter spitter = new Spitter(4L, "arthur", "letmein", "Arthur Names", "arthur@habuma.com", false);
-		Spitter saved = spitterRepository.save(spitter);
+		Spitter saved = spitterRepository.merge(spitter);
 		assertSpitter(5, saved);
 		assertEquals(4, spitterRepository.count());
 		Spitter updated = spitterRepository.findOne(4L);
