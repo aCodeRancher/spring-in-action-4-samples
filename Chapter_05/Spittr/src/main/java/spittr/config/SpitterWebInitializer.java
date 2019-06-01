@@ -16,7 +16,7 @@ public class SpitterWebInitializer extends AbstractAnnotationConfigDispatcherSer
     return new Class<?>[] { RootConfig.class };
   }
 
-  @Override
+ @Override
   protected Class<?>[] getServletConfigClasses() {
     return new Class<?>[] { WebConfig.class };
   }

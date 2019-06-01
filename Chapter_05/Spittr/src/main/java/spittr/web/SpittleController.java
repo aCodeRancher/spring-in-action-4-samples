@@ -4,12 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import spittr.Spittle;
 import spittr.data.SpittleRepository;
@@ -49,4 +48,19 @@ public class SpittleController {
     return "redirect:/spittles";
   }
 
+
+
+  @RequestMapping( value="/retrieve", method=RequestMethod.GET)
+  public ResponseEntity<List<Spittle>> retrieveSpittle ()
+  {
+    List<Spittle> spittles = spittleRepository.findSpittles(20,20);
+    return new ResponseEntity<List<Spittle>>(spittles, HttpStatus.OK);
+  }
+
+  @RequestMapping( value="/add", method=RequestMethod.POST, consumes = "application/json")
+  public ResponseEntity<Spittle> addSpittle (@RequestBody Spittle spittle)
+  {
+      spittleRepository.save(spittle);
+    return new ResponseEntity<>(spittle, HttpStatus.CREATED);
+  }
 }

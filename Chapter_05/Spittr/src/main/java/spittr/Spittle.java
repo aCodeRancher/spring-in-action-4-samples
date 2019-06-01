@@ -7,11 +7,14 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Spittle {
 
-  private final Long id;
-  private final String message;
-  private final Date time;
-  private Double latitude;
-  private Double longitude;
+  private  Long id = 0L;
+  private  String message=" ";
+  private  Date time= new Date();
+  private Double latitude = 0.0;
+  private Double longitude= 0.0;
+
+  public Spittle() { }
+
 
   public Spittle(String message, Date time) {
     this(null, message, time, null, null);
@@ -54,5 +57,9 @@ public class Spittle {
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this, "id", "time");
   }
-  
+
+  public String toString() {
+    return "id: " + id + ", message: " + message
+            + ", time: " + time + ", longitude: " + longitude + ", latitude: "+latitude;
+  }
 }
